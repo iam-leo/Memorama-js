@@ -1,0 +1,30 @@
+{
+  "name": "memorama",
+  "version": "1.0.0",
+  "description": "Juego Memorama con JavaScript",
+  "main": "js/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iam-leo/Memorama-js.git"
+  },
+  "keywords": [
+    "memorama",
+    "game",
+    "javascript"
+  ],
+  "author": "Leo Ss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iam-leo/Memorama-js/issues"
+  },
+  "homepage": "https://github.com/iam-leo/Memorama-js#readme",
+  "devDependencies": {
+    "electron": "^19.0.8",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.12",
+    "tailwindcss": "^3.1.5"
+  }
+}

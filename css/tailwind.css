@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.5s;
+}
+body{
+    background: linear-gradient(to bottom, #fdc830, #f37335);
+}
+.tarjeta{
+    transform-style: preserve-3d;
+    cursor: pointer;
+    animation: iniciar 3s;
+}
+
+/* .area-tarjeta:hover .tarjeta{
+    transform: rotateY(180deg);
+    
+} */
+.cara{
+    backface-visibility: hidden;
+}
+
+.front{
+    transform: rotateY(180deg);
+}
+
+@keyframes iniciar{
+    20%, 90%{
+        transform: rotateY(180deg);
+    }
+    0%, 100%{
+        transform: rotateY(0deg);
+    }
+}
