@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        "handlee-reg" : "Handlee-Regular, cursive",
-        "kaushan-reg" : "KaushanScript-Regular, cursive"
+        'handlee-reg' : '"Handlee-Regular"',
+        'kaushan-reg' : '"KaushanScript-Regular"'
       }
     }
   },

@@ -2,8 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('./fonts/Handlee-Regular.ttf');
-@import url('./fonts/KaushanScript-Regular.ttf');
+@font-face {
+    font-family: "Handlee-Regular";
+    src: url('../fonts/Handlee-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "KaushanScript-Regular";
+    src: url('../fonts/KaushanScript-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
 
 *{
     margin: 0;

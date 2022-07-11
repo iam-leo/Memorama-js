@@ -5,6 +5,7 @@ const tablero = document.querySelector('#tablero');
 const btnNuevoJuego = document.querySelector('#nuevo-juego');
 const modal = document.querySelector('#modal');
 
+const audioStart = new Audio('./sounds/start.wav');
 const audioOk = new Audio('./sounds/ok.wav');
 const audioFail = new Audio('./sounds/fail.wav');
 const audioClick = new Audio('./sounds/click.wav');
@@ -14,12 +15,15 @@ audioMusic.volume = 0.3;
 audioMusic.loop = true;
 
 btnNuevoJuego.addEventListener('click', () => {
-    while(tablero.firstChild){
-        tablero.removeChild(tablero.firstChild);
-    }
-    contadorPares = 0;
-    modal.classList.add('hidden');
-    generarTablero();
+    audioStart.play();
+    setTimeout(() => {
+        while(tablero.firstChild){
+            tablero.removeChild(tablero.firstChild);
+        }
+        contadorPares = 0;
+        modal.classList.add('hidden');
+        generarTablero();
+    }, 1300);
 })
 
 function cargarFiguras(){

@@ -720,6 +720,10 @@ video {
   background-color: rgb(163 230 53 / var(--tw-bg-opacity));
 }
 
+.bg-red-600\/60 {
+  background-color: rgb(220 38 38 / 0.6);
+}
+
 .bg-red-600\/50 {
   background-color: rgb(220 38 38 / 0.5);
 }
@@ -732,14 +736,6 @@ video {
 .bg-green-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(74 222 128 / var(--tw-bg-opacity));
-}
-
-.bg-red-600\/40 {
-  background-color: rgb(220 38 38 / 0.4);
-}
-
-.bg-red-600\/60 {
-  background-color: rgb(220 38 38 / 0.6);
 }
 
 .object-fill {
@@ -766,11 +762,11 @@ video {
 }
 
 .font-kaushan-reg {
-  font-family: KaushanScript-Regular, cursive;
+  font-family: "KaushanScript-Regular";
 }
 
 .font-handlee-reg {
-  font-family: Handlee-Regular, cursive;
+  font-family: "Handlee-Regular";
 }
 
 .text-6xl {
@@ -803,6 +799,26 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+@font-face {
+  font-family: "Handlee-Regular";
+
+  src: url('../fonts/Handlee-Regular.ttf') format('truetype');
+
+  font-style: normal;
+
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "KaushanScript-Regular";
+
+  src: url('../fonts/KaushanScript-Regular.ttf') format('truetype');
+
+  font-style: normal;
+
+  font-weight: normal;
 }
 
 *{
@@ -855,11 +871,6 @@ body{
   0%, 100%{
     transform: rotateY(0deg);
   }
-}
-
-.hover\:bg-sky-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(3 105 161 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-red-600:hover {
