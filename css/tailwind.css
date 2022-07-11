@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('./fonts/Handlee-Regular.ttf');
+@import url('./fonts/KaushanScript-Regular.ttf');
+
 *{
     margin: 0;
     padding: 0;

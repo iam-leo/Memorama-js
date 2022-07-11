@@ -1,12 +1,24 @@
 let figuras = [];
 let selecciones = [];
+let contadorPares = 0;
 const tablero = document.querySelector('#tablero');
 const btnNuevoJuego = document.querySelector('#nuevo-juego');
+const modal = document.querySelector('#modal');
+
+const audioOk = new Audio('./sounds/ok.wav');
+const audioFail = new Audio('./sounds/fail.wav');
+const audioClick = new Audio('./sounds/click.wav');
+const audioWin = new Audio('./sounds/win.wav');
+const audioMusic = new Audio('./sounds/music.mp3');
+audioMusic.volume = 0.3;
+audioMusic.loop = true;
 
 btnNuevoJuego.addEventListener('click', () => {
     while(tablero.firstChild){
         tablero.removeChild(tablero.firstChild);
     }
+    contadorPares = 0;
+    modal.classList.add('hidden');
     generarTablero();
 })
 
@@ -26,6 +38,7 @@ function cargarFiguras(){
 }
 
 function generarTablero(){
+    audioMusic.play();
     cargarFiguras();
     let tarjetas = [];
 
@@ -59,7 +72,6 @@ function generarTarjeta(id){
 
     const divCover = document.createElement('div');
     divCover.classList.add('cara', 'flex', 'justify-center', 'items-center', 'w-20', 'h-28', 'm-w-[80px]', 'absolute', 'bg-blue-300');
-    
 
     const imgCover = document.createElement('img');
     imgCover.classList.add('w-full', 'object-fill');
@@ -78,13 +90,14 @@ function generarTarjeta(id){
     divTarjeta.appendChild(divCover);
     divTarjeta.appendChild(divFront);
     divAreaTarjeta.appendChild(divTarjeta);
-    
+
     return divAreaTarjeta
 }
 
 function seleccionarTarjeta(id){
     const tarjeta = document.querySelector('#tarjeta-' + id);
-    
+    audioClick.play();
+
     if(tarjeta.style.transform != "rotateY(180deg)"){
         tarjeta.style.transform = "rotateY(180deg)"
         selecciones.push(id)
@@ -102,18 +115,28 @@ function deseleccionar(selecciones){
         const front2 = document.querySelector('#front-' + selecciones[1]);
         
         if(front1.innerHTML !== front2.innerHTML){
+            audioFail.play();
             const tarj1 = document.querySelector('#tarjeta-' + selecciones[0]);
             const tarj2 = document.querySelector('#tarjeta-' + selecciones[1]);
             tarj1.style.transform = "rotateY(0deg)";
             tarj2.style.transform = "rotateY(0deg)";
         }else{
+            audioOk.play();
             front1.classList.remove('bg-violet-600');
             front1.classList.add('bg-green-400');
             front2.classList.remove('bg-violet-600');
             front2.classList.add('bg-green-400');
+            contadorPares++;
+            juegoFinalizado();
         }
 
     }, 1000);
 }
-generarTablero();
+
+function juegoFinalizado(){
+    if(contadorPares >= 10){
+        audioWin.play();
+        modal.classList.remove('hidden');
+    }
+}
 

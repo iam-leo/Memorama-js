@@ -5,6 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "handlee-reg" : "Handlee-Regular, cursive",
+        "kaushan-reg" : "KaushanScript-Regular, cursive"
+      }
     }
   },
   plugins: [],
