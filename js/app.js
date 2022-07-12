@@ -1,7 +1,10 @@
 let figuras = [];
 let selecciones = [];
 let contadorPares = 0;
+const barWindow = document.querySelector('#bar-window');
+const titulo = document.querySelector('#titulo');
 const tablero = document.querySelector('#tablero');
+const contenedorBtn = document.querySelector('.content-btn');
 const btnNuevoJuego = document.querySelector('#nuevo-juego');
 const modal = document.querySelector('#modal');
 
@@ -16,6 +19,10 @@ audioMusic.volume = 0.3;
 audioMusic.loop = true;
 
 btnNuevoJuego.addEventListener('click', () => {
+    titulo.classList.add('hidden');
+    contenedorBtn.classList.add('hidden');
+    btnNuevoJuego.classList.remove('absolute', 'z-50', 'bottom-[10%]');
+    barWindow.classList.remove('absolute', 'z-50');
     audioStart.play();
     setTimeout(() => {
         //Reseteamos el html para generar un nuevo tablero
@@ -30,6 +37,7 @@ btnNuevoJuego.addEventListener('click', () => {
         modal.classList.add('hidden');
 
         //Generamos el tablero con las tarjetas
+        tablero.classList.remove('hidden');
         generarTablero();
     }, 1300);
 })
@@ -161,5 +169,8 @@ function juegoFinalizado(){
     if(contadorPares >= 10){
         audioWin.play();
         modal.classList.remove('hidden');
+        contenedorBtn.classList.remove('hidden');
+        btnNuevoJuego.classList.add('absolute', 'z-50', 'bottom-[10%]');
+        barWindow.classList.add('absolute', 'z-50');
     }
 }

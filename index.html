@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="css/style.css" />
     <script defer src="js/functions.js"></script>
   </head>
-  <body class="relative min-h-screen flex flex-col justify-center items-center select-none">
-    <div class="bg-red-600/60 w-full h-8 flex items-center overflow-hidden">
+  <body class="relative min-h-screen flex flex-col justify-start items-center overflow-hidden select-none">
+    <!-- Barra de la ventana -->
+    <div id="bar-window" class="bg-red-600/60 w-full h-8 flex items-center overflow-hidden">
       <div class="flex-grow">
         <p class="text-white w-full font-handlee-reg font-semibold tracking-wide pl-10 bar">Memorama Js by Leo Ss</p>
       </div>
@@ -25,18 +26,20 @@
         </button>
       </div>
     </div>
-    <h1 class="my-4 mx-auto text-6xl font-kaushan-reg">Memorama JS</h1>
-    <div id="tablero" class="grid grid-cols-5 gap-3">
+    <h1 id="titulo" class="mt-36 mb-8 mx-auto text-6xl font-kaushan-reg">Memorama JS</h1>
+    <div id="tablero" class="mt-24 grid grid-cols-5 gap-3 hidden p-10 bg-slate-200/20 rounded-md">
     </div>
-    <div id="modal" class="flex justify-center items-center absolute m-auto top-0 right-0 bottom-0 left-0 w-full h-48 bg-lime-400 hidden">
-      <h2 class="text-6xl text-black font-kaushan-reg text-center uppercase tracking-widest animate-bounce">¡Ganaste!</h2>
+    <div id="modal" class="flex justify-center items-center absolute m-auto top-0 right-0 bottom-0 left-0 w-full h-[100vh-32px] bg-slate-900/75 hidden">
+      <div class="w-full h-48 flex justify-center items-center bg-lime-400">
+        <h2 class="text-6xl text-black font-kaushan-reg text-center uppercase tracking-widest animate-bounce">¡Ganaste!</h2>
+      </div>
     </div>
-    <div class="my-4">
+    <div class="mt-4 flex justify-center content-btn">
       <button id="nuevo-juego" class="rounded-lg bg-red-600/60  text-2xl font-handlee-reg py-3 px-4 leading-none text-white flex justify-center items-center uppercase hover:bg-red-600">Nueva partida</button>
     </div>
-    <footer class="mt-auto bg-red-600/50 block w-full">
+    <!-- <footer class="mt-auto bg-red-600/50 block w-full">
         <p class="font-handlee-reg text-white text-center p-4">Leo Ss 2022</p>
-    </footer>
+    </footer> -->
     <script src="js/app.js"></script>
   </body>
 </html>
