@@ -6,21 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memorama JS</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/functions.js"></script>
   </head>
-  <body class="relative min-h-screen flex flex-col justify-center items-center ">
+  <body class="relative min-h-screen flex flex-col justify-center items-center select-none">
+    <div class="bg-red-600/60 w-full h-8 flex items-center overflow-hidden">
+      <div class="flex-grow">
+        <p class="text-white w-full font-handlee-reg font-semibold tracking-wide pl-10 bar">Memorama Js by Leo Ss</p>
+      </div>
+      <div class="flex justify-end items-center bg-red-600/50">
+        <button id="minBtn" class="hover:bg-red-600" title="Minimizar">
+          <img src="img/min.svg" class="object-fill px-1">
+        </button>
+        <button id="maxBtn" class="hover:bg-red-600" title="Maximizar">
+          <img src="img/max.svg" class="object-fill">
+        </button>
+        <button id="closeBtn" class="hover:bg-red-600" title="Cerrar">
+          <img src="img/close.svg" class="object-fill">
+        </button>
+      </div>
+    </div>
     <h1 class="my-4 mx-auto text-6xl font-kaushan-reg">Memorama JS</h1>
     <div id="tablero" class="grid grid-cols-5 gap-3">
-      <!-- Tarjetas -->
-        <!-- <div class="area-tarjeta w-20 h-28 m-w-[80px] grid-cols-5 rounded-lg overflow-hidden">
-            <div class="tarjeta w-20 h-28 m-w-[80px] relative">
-                <div id="cover" class="cara flex justify-center items-center w-20 h-28 m-w-[80px] absolute bg-blue-300">
-                    <img src="img/bg-cover-card.png" class="w-full object-fill" alt="">
-                </div>
-                <div id="front" class="cara flex justify-center items-center w-20 h-28 m-w-[80px] absolute bg-emerald-300">
-                  <img src="img/010.png" class="w-10/12 object-fill" alt="">
-                </div>
-            </div>
-        </div> -->
     </div>
     <div id="modal" class="flex justify-center items-center absolute m-auto top-0 right-0 bottom-0 left-0 w-full h-48 bg-lime-400 hidden">
       <h2 class="text-6xl text-black font-kaushan-reg text-center uppercase tracking-widest animate-bounce">¡Ganaste!</h2>
@@ -31,6 +37,6 @@
     <footer class="mt-auto bg-red-600/50 block w-full">
         <p class="font-handlee-reg text-white text-center p-4">Leo Ss 2022</p>
     </footer>
-    <script src="js/preload.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

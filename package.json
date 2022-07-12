@@ -2,7 +2,7 @@
   "name": "memorama",
   "version": "1.0.0",
   "description": "Juego Memorama con JavaScript",
-  "main": "js/main.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron ."
   },

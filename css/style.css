@@ -616,28 +616,36 @@ video {
   display: none;
 }
 
-.h-28 {
-  height: 7rem;
+.h-8 {
+  height: 2rem;
 }
 
 .h-48 {
   height: 12rem;
 }
 
-.min-h-screen {
-  min-height: 100vh;
+.h-28 {
+  height: 7rem;
 }
 
-.w-20 {
-  width: 5rem;
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-full {
   width: 100%;
 }
 
+.w-20 {
+  width: 5rem;
+}
+
 .w-10\/12 {
   width: 83.333333%;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 
 .transform {
@@ -677,6 +685,13 @@ video {
           animation: bounce 1s infinite;
 }
 
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
 .grid-cols-5 {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
@@ -687,6 +702,10 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {
@@ -705,14 +724,12 @@ video {
   border-radius: 0.5rem;
 }
 
-.bg-blue-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(147 197 253 / var(--tw-bg-opacity));
+.bg-red-600\/60 {
+  background-color: rgb(220 38 38 / 0.6);
 }
 
-.bg-emerald-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(110 231 183 / var(--tw-bg-opacity));
+.bg-red-600\/50 {
+  background-color: rgb(220 38 38 / 0.5);
 }
 
 .bg-lime-400 {
@@ -720,12 +737,9 @@ video {
   background-color: rgb(163 230 53 / var(--tw-bg-opacity));
 }
 
-.bg-red-600\/60 {
-  background-color: rgb(220 38 38 / 0.6);
-}
-
-.bg-red-600\/50 {
-  background-color: rgb(220 38 38 / 0.5);
+.bg-blue-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(147 197 253 / var(--tw-bg-opacity));
 }
 
 .bg-violet-600 {
@@ -747,6 +761,11 @@ video {
   padding: 1rem;
 }
 
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -757,16 +776,20 @@ video {
   padding-right: 1rem;
 }
 
+.pl-10 {
+  padding-left: 2.5rem;
+}
+
 .text-center {
   text-align: center;
 }
 
-.font-kaushan-reg {
-  font-family: "KaushanScript-Regular";
-}
-
 .font-handlee-reg {
   font-family: "Handlee-Regular";
+}
+
+.font-kaushan-reg {
+  font-family: "KaushanScript-Regular";
 }
 
 .text-6xl {
@@ -779,6 +802,10 @@ video {
   line-height: 2rem;
 }
 
+.font-semibold {
+  font-weight: 600;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -787,18 +814,22 @@ video {
   line-height: 1;
 }
 
-.tracking-widest {
-  letter-spacing: 0.1em;
+.tracking-wide {
+  letter-spacing: 0.025em;
 }
 
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
+.tracking-widest {
+  letter-spacing: 0.1em;
 }
 
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 @font-face {
@@ -830,6 +861,10 @@ video {
 
 body{
   background: linear-gradient(to bottom, #fdc830, #f37335);
+}
+
+.bar{
+  -webkit-app-region: drag;
 }
 
 .tarjeta{

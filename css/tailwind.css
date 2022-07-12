@@ -25,6 +25,9 @@
 body{
     background: linear-gradient(to bottom, #fdc830, #f37335);
 }
+.bar{
+    -webkit-app-region: drag;
+}
 .tarjeta{
     transform-style: preserve-3d;
     cursor: pointer;

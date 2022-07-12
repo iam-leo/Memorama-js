@@ -5,6 +5,7 @@ const tablero = document.querySelector('#tablero');
 const btnNuevoJuego = document.querySelector('#nuevo-juego');
 const modal = document.querySelector('#modal');
 
+//Sonidos y musica del juego
 const audioStart = new Audio('./sounds/start.wav');
 const audioOk = new Audio('./sounds/ok.wav');
 const audioFail = new Audio('./sounds/fail.wav');
@@ -17,15 +18,23 @@ audioMusic.loop = true;
 btnNuevoJuego.addEventListener('click', () => {
     audioStart.play();
     setTimeout(() => {
+        //Reseteamos el html para generar un nuevo tablero
         while(tablero.firstChild){
             tablero.removeChild(tablero.firstChild);
         }
+
+        //Reseteamos el contador
         contadorPares = 0;
+
+        //Ocultamos el modal (Pantalla ganadora)
         modal.classList.add('hidden');
+
+        //Generamos el tablero con las tarjetas
         generarTablero();
     }, 1300);
 })
 
+//Figuras de las tarjetas
 function cargarFiguras(){
     figuras = [
         'img/001.png',
@@ -64,6 +73,7 @@ function generarTablero(){
     });
 }
 
+//Scripting para crear una tarjeta
 function generarTarjeta(id){
     const divAreaTarjeta = document.createElement('div');
     divAreaTarjeta.classList.add('area-tarjeta', 'w-20', 'h-28', 'm-w-[80px]', 'grid-cols-5', 'rounded-lg', 'overflow-hidden');
@@ -102,13 +112,17 @@ function seleccionarTarjeta(id){
     const tarjeta = document.querySelector('#tarjeta-' + id);
     audioClick.play();
 
+    //Descubrimos la tarjeta
     if(tarjeta.style.transform != "rotateY(180deg)"){
         tarjeta.style.transform = "rotateY(180deg)"
+        //La agregamos al array para hacer la comparacion luego con otra tarjeta
         selecciones.push(id)
     }
 
     if(selecciones.length === 2){
+        //Hacemos la validacion de las dos tarjetas en cuestion
         deseleccionar(selecciones);
+        //Reseteamos el array
         selecciones = [];
     }
 }
@@ -117,14 +131,19 @@ function deseleccionar(selecciones){
     setTimeout(() => {
         const front1 = document.querySelector('#front-' + selecciones[0]);
         const front2 = document.querySelector('#front-' + selecciones[1]);
-        
+
+        //Validar si las tarjetas son iguales
         if(front1.innerHTML !== front2.innerHTML){
+            //Si son distintas lanzamos audio de intento fallido, y tapamos de nuevo las tarjetas
             audioFail.play();
             const tarj1 = document.querySelector('#tarjeta-' + selecciones[0]);
             const tarj2 = document.querySelector('#tarjeta-' + selecciones[1]);
             tarj1.style.transform = "rotateY(0deg)";
             tarj2.style.transform = "rotateY(0deg)";
         }else{
+            /* Si son iguales, lanzamos audio de acierto, cambiamos el background de las tarjetas a verde, aumentamos el
+             * contador de pares y verificamos si el juego a concluído.
+             */
             audioOk.play();
             front1.classList.remove('bg-violet-600');
             front1.classList.add('bg-green-400');
@@ -137,10 +156,10 @@ function deseleccionar(selecciones){
     }, 1000);
 }
 
+//Funcion verificadora si están los 10 pares acertados
 function juegoFinalizado(){
     if(contadorPares >= 10){
         audioWin.play();
         modal.classList.remove('hidden');
     }
 }
-
