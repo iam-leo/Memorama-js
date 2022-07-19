@@ -1,10 +1,31 @@
 {
-  "name": "memorama",
+  "name": "Memorama",
   "version": "1.0.0",
   "description": "Juego Memorama con JavaScript",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "memorama-js",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "./img/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "installerIcon": "./img/icon.ico",
+      "installerSidebar": "./img/sidebarInstaller.bmp",
+      "uninstallerSidebar": "./img/sidebarInstaller.bmp",
+      "uninstallerIcon": "./img/icon.ico",
+      "uninstallDisplayName": "uninstaller",
+      "deleteAppDataOnUninstall": true,
+      "license": "license.html",
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "repository": {
     "type": "git",
@@ -23,6 +44,7 @@
   "homepage": "https://github.com/iam-leo/Memorama-js#readme",
   "devDependencies": {
     "electron": "^19.0.8",
+    "electron-builder": "^23.1.0",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.12",
     "tailwindcss": "^3.1.5"
