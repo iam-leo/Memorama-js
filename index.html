@@ -27,7 +27,18 @@
       </div>
     </div>
     <h1 id="titulo" class="mt-36 mb-8 mx-auto text-6xl font-kaushan-reg">Memorama JS</h1>
-    <div id="tablero" class="mt-24 grid grid-cols-5 gap-3 hidden p-10 bg-slate-200/20 rounded-md">
+    <div id="score" class="w-[550px] h-14 mt-10 flex justify-around items-center bg-slate-200/20 rounded-md hidden">
+      <div>
+        <span id="movimientos" class="text-2xl font-semibold">Movimientos: 0</span>
+      </div>
+      <div>
+        <p id="pares" class="text-2xl font-semibold">Aciertos: 0</p>
+      </div>
+      <div>
+        <p id="tiempo" class="text-2xl font-semibold">Tiempo: <span id="minutos">00</span>:<span id="segundos">00</span></p>
+      </div>
+    </div>
+    <div id="tablero" class="mt-4 grid grid-cols-5 gap-3 hidden p-10 bg-slate-200/20 rounded-md">
     </div>
     <div id="modal" class="flex justify-center items-center absolute m-auto top-0 right-0 bottom-0 left-0 w-full h-[100vh-32px] bg-slate-900/75 hidden">
       <div class="w-full h-48 flex justify-center items-center bg-lime-400">

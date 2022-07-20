@@ -1,8 +1,17 @@
 let figuras = [];
 let selecciones = [];
-let contadorPares = 0;
+let contadorPares = 0,
+    cantMovimientos = 0,
+    segundos = 0,
+    minutos = 0;
+let timeInterval;
 const barWindow = document.querySelector('#bar-window');
 const titulo = document.querySelector('#titulo');
+const score = document.querySelector('#score');
+const movimientos = document.querySelector('#movimientos');
+const pares = document.querySelector('#pares');
+const spanSegundos = document.querySelector('#segundos');
+const spanMinutos = document.querySelector('#minutos')
 const tablero = document.querySelector('#tablero');
 const contenedorBtn = document.querySelector('.content-btn');
 const btnNuevoJuego = document.querySelector('#nuevo-juego');
@@ -22,6 +31,7 @@ btnNuevoJuego.addEventListener('click', () => {
     titulo.classList.add('hidden');
     contenedorBtn.classList.add('hidden');
     btnNuevoJuego.classList.remove('absolute', 'z-50', 'bottom-[10%]');
+    score.classList.remove('hidden');
     barWindow.classList.remove('absolute', 'z-50');
     audioStart.play();
     setTimeout(() => {
@@ -30,8 +40,8 @@ btnNuevoJuego.addEventListener('click', () => {
             tablero.removeChild(tablero.firstChild);
         }
 
-        //Reseteamos el contador
-        contadorPares = 0;
+        //Reseteamos el contador y html
+        resetearValores()
 
         //Ocultamos el modal (Pantalla ganadora)
         modal.classList.add('hidden');
@@ -39,8 +49,34 @@ btnNuevoJuego.addEventListener('click', () => {
         //Generamos el tablero con las tarjetas
         tablero.classList.remove('hidden');
         generarTablero();
+        setTimeout(() => {
+            tiempo();
+        }, 3000);
     }, 1300);
-})
+});
+
+function tiempo(){
+    timeInterval = setInterval(() => {
+        if(segundos !== 59){
+            segundos++;
+        }else{
+            minutos++;
+            segundos = 0;
+        }
+
+        if(segundos<10){
+            spanSegundos.textContent = `0${segundos}`;
+        }else{
+            spanSegundos.textContent = segundos;
+        }
+
+        if(minutos<10){
+            spanMinutos.textContent = `0${minutos}`;
+        }else{
+            spanMinutos.textContent = minutos;
+        }
+    }, 1000);
+}
 
 //Figuras de las tarjetas
 function cargarFiguras(){
@@ -137,6 +173,9 @@ function seleccionarTarjeta(id){
 
 function deseleccionar(selecciones){
     setTimeout(() => {
+        cantMovimientos++;
+        movimientos.textContent = `Movimientos: ${cantMovimientos}`;
+
         const front1 = document.querySelector('#front-' + selecciones[0]);
         const front2 = document.querySelector('#front-' + selecciones[1]);
 
@@ -150,7 +189,7 @@ function deseleccionar(selecciones){
             tarj2.style.transform = "rotateY(0deg)";
         }else{
             /* Si son iguales, lanzamos audio de acierto, cambiamos el background de las tarjetas a verde, aumentamos el
-             * contador de pares y verificamos si el juego a concluído.
+             * contador de pares, actualizamos el html de aciertos y verificamos si el juego a concluído.
              */
             audioOk.play();
             front1.classList.remove('bg-violet-600');
@@ -158,6 +197,7 @@ function deseleccionar(selecciones){
             front2.classList.remove('bg-violet-600');
             front2.classList.add('bg-green-400');
             contadorPares++;
+            pares.textContent = `Aciertos: ${contadorPares}`
             juegoFinalizado();
         }
 
@@ -167,10 +207,22 @@ function deseleccionar(selecciones){
 //Funcion verificadora si están los 10 pares acertados
 function juegoFinalizado(){
     if(contadorPares >= 10){
+        clearInterval(timeInterval);
         audioWin.play();
         modal.classList.remove('hidden');
         contenedorBtn.classList.remove('hidden');
         btnNuevoJuego.classList.add('absolute', 'z-50', 'bottom-[10%]');
         barWindow.classList.add('absolute', 'z-50');
     }
+}
+
+function resetearValores(){
+    contadorPares = 0;
+    cantMovimientos = 0;
+    segundos = 0;
+    minutos = 0;
+    movimientos.textContent = `Movimientos: 0`;
+    pares.textContent = `Aciertos: 0`;
+    spanSegundos.textContent = '00';
+    spanMinutos.textContent = '00';
 }
