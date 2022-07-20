@@ -41,8 +41,13 @@
     <div id="tablero" class="mt-4 grid grid-cols-5 gap-3 hidden p-10 bg-slate-200/20 rounded-md">
     </div>
     <div id="modal" class="flex justify-center items-center absolute m-auto top-0 right-0 bottom-0 left-0 w-full h-[100vh-32px] bg-slate-900/75 hidden">
-      <div class="w-full h-48 flex justify-center items-center bg-lime-400">
+      <div class="w-full h-52 flex flex-col justify-center items-center bg-lime-400">
         <h2 class="text-6xl text-black font-kaushan-reg text-center uppercase tracking-widest animate-bounce">¡Ganaste!</h2>
+        <div class="flex gap-x-12 mt-12 text-xl font-semibold">
+          <p id="modal-movimientos">Movimientos: 20</p>
+          <p id="modal-tiempo">Tiempo: 02:05</p>
+          <p id="modal-puntaje">Puntaje total: 100</p>
+        </div>
       </div>
     </div>
     <div class="mt-4 flex justify-center content-btn">

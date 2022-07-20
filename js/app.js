@@ -16,6 +16,9 @@ const tablero = document.querySelector('#tablero');
 const contenedorBtn = document.querySelector('.content-btn');
 const btnNuevoJuego = document.querySelector('#nuevo-juego');
 const modal = document.querySelector('#modal');
+const modalMov = document.querySelector('#modal-movimientos');
+const modalTime = document.querySelector('#modal-tiempo');
+const modalPuntaje = document.querySelector('#modal-puntaje');
 
 //Sonidos y musica del juego
 const audioStart = new Audio('./sounds/start.wav');
@@ -209,6 +212,9 @@ function juegoFinalizado(){
     if(contadorPares >= 10){
         clearInterval(timeInterval);
         audioWin.play();
+        modalMov.textContent = `Movimientos: ${cantMovimientos}`;
+        modalTime.textContent = `Tiempo: ${spanMinutos.textContent}:${spanSegundos.textContent}`;
+        modalPuntaje.textContent = `Puntaje: ${calcularPuntaje()}`;
         modal.classList.remove('hidden');
         contenedorBtn.classList.remove('hidden');
         btnNuevoJuego.classList.add('absolute', 'z-50', 'bottom-[10%]');
@@ -225,4 +231,17 @@ function resetearValores(){
     pares.textContent = `Aciertos: 0`;
     spanSegundos.textContent = '00';
     spanMinutos.textContent = '00';
+}
+
+function calcularPuntaje(){
+    let puntaje;
+    if( minutos < 1 && cantMovimientos < 15 ){
+        return puntaje = contadorPares * 100;
+    } else if( minutos < 1 && cantMovimientos < 20 ){
+        return puntaje = contadorPares * 80;
+    } else if( minutos > 1 && cantMovimientos > 20 ){
+        return puntaje = contadorPares * 50;
+    }else{
+        return puntaje = contadorPares * 30;
+    }
 }
