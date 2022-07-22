@@ -33,6 +33,12 @@ const audioMusic = new Audio('./sounds/music.mp3');
 audioMusic.volume = 0.3;
 audioMusic.loop = true;
 
+//Creamos 2 registros del modo de audio, cuando se ingrese por primera vez
+if(localStorage.length === 0){
+    localStorage.setItem('music', 'on');
+    localStorage.setItem('sounds', 'on');
+}
+
 btnNuevoJuego.addEventListener('click', () => {
     titulo.classList.add('hidden');
     contenedorBtn.classList.add('hidden');
@@ -40,7 +46,7 @@ btnNuevoJuego.addEventListener('click', () => {
     score.classList.remove('hidden');
     btnsSonido.classList.remove('hidden');
     barWindow.classList.remove('absolute', 'z-50');
-    audioStart.play();
+    reactivarAudio('sounds', audioStart)
     setTimeout(() => {
         //Reseteamos el html para generar un nuevo tablero
         while(tablero.firstChild){
@@ -102,7 +108,7 @@ function cargarFiguras(){
 }
 
 function generarTablero(){
-    audioMusic.play();
+    reactivarAudio('music', audioMusic)
     cargarFiguras();
     let tarjetas = [];
 
@@ -161,7 +167,8 @@ function generarTarjeta(id){
 
 function seleccionarTarjeta(id){
     const tarjeta = document.querySelector('#tarjeta-' + id);
-    audioClick.play();
+
+    reactivarAudio('sounds', audioClick);
 
     //Descubrimos la tarjeta
     if(tarjeta.style.transform != "rotateY(180deg)"){
@@ -189,7 +196,7 @@ function deseleccionar(selecciones){
         //Validar si las tarjetas son iguales
         if(front1.innerHTML !== front2.innerHTML){
             //Si son distintas lanzamos audio de intento fallido, y tapamos de nuevo las tarjetas
-            audioFail.play();
+            reactivarAudio('sounds', audioFail);
             const tarj1 = document.querySelector('#tarjeta-' + selecciones[0]);
             const tarj2 = document.querySelector('#tarjeta-' + selecciones[1]);
             tarj1.style.transform = "rotateY(0deg)";
@@ -198,7 +205,7 @@ function deseleccionar(selecciones){
             /* Si son iguales, lanzamos audio de acierto, cambiamos el background de las tarjetas a verde, aumentamos el
              * contador de pares, actualizamos el html de aciertos y verificamos si el juego a concluído.
              */
-            audioOk.play();
+            reactivarAudio('sounds', audioOk);
             front1.classList.remove('bg-violet-600');
             front1.classList.add('bg-green-400');
             front2.classList.remove('bg-violet-600');
@@ -215,7 +222,8 @@ function deseleccionar(selecciones){
 function juegoFinalizado(){
     if(contadorPares >= 10){
         clearInterval(timeInterval);
-        audioWin.play();
+        //audioWin.play();
+        reactivarAudio('sounds', audioWin);
         modalMov.textContent = `Movimientos: ${cantMovimientos}`;
         modalTime.textContent = `Tiempo: ${spanMinutos.textContent}:${spanSegundos.textContent}`;
         modalPuntaje.textContent = `Puntaje: ${calcularPuntaje()}`;
@@ -238,15 +246,14 @@ function resetearValores(){
 }
 
 function calcularPuntaje(){
-    let puntaje;
     if( minutos < 1 && cantMovimientos < 15 ){
-        return puntaje = contadorPares * 100;
+        return contadorPares * 100;
     } else if( minutos < 1 && cantMovimientos < 20 ){
-        return puntaje = contadorPares * 80;
+        return contadorPares * 80;
     } else if( minutos > 1 && cantMovimientos > 20 ){
-        return puntaje = contadorPares * 50;
+        return contadorPares * 50;
     }else{
-        return puntaje = contadorPares * 30;
+        return contadorPares * 30;
     }
 }
 
@@ -258,8 +265,10 @@ btnMusicOnOff.addEventListener('click', () => {
     iconOff.classList.toggle('hidden');
 
     if(iconOn.classList.contains('hidden')){
+        localStorage.setItem('music', 'off');
         audioMusic.pause();
     } else{
+        localStorage.setItem('music', 'on');
         audioMusic.play();
     }
 });
@@ -284,12 +293,11 @@ btnSoundsOnOff.addEventListener('click', () => {
         audioFail.volume = 0;
         audioWin.volume = 0;
     } else{
-        audioStart.play();
-        audioClick.play();
-        audioOk.play();
-        audioFail.play();
-        audioWin.play();
-        //audioMusic.play();
+        reactivarAudio('sounds', audioStart);
+        reactivarAudio('sounds', audioClick);
+        reactivarAudio('sounds', audioOk);
+        reactivarAudio('sounds', audioFail);
+        reactivarAudio('sounds', audioWin);
 
         setTimeout(() => {
             audioStart.volume = 1;
@@ -299,4 +307,30 @@ btnSoundsOnOff.addEventListener('click', () => {
             audioWin.volume = 1;
         }, 1025);
     }
+
+    if(iconOn.classList.contains('hidden')){
+         localStorage.setItem('sounds', 'off');
+    }else{
+         localStorage.setItem('sounds', 'on');
+    }
 });
+
+function reactivarAudio(tipo, audio){
+    if(localStorage.getItem(tipo) === 'on'){
+        audio.play();
+    }
+}
+
+//Si hay una recarga aseguramos la carga de los iconos que corresponda de los botones de sonido
+const currentMusic = localStorage.getItem('music');
+const currentSounds = localStorage.getItem('sounds');
+
+if(currentMusic === 'off'){
+    btnMusicOnOff.childNodes[1].classList.add('hidden');
+    btnMusicOnOff.childNodes[3].classList.remove('hidden');
+}
+
+if(currentSounds === 'off'){
+    btnSoundsOnOff.childNodes[1].classList.add('hidden');
+    btnSoundsOnOff.childNodes[3].classList.remove('hidden');
+}
