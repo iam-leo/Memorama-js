@@ -19,6 +19,9 @@ const modal = document.querySelector('#modal');
 const modalMov = document.querySelector('#modal-movimientos');
 const modalTime = document.querySelector('#modal-tiempo');
 const modalPuntaje = document.querySelector('#modal-puntaje');
+const btnsSonido = document.querySelector('#contenedor-btn-sonido');
+const btnMusicOnOff = document.querySelector('#musicOnOff');
+const btnSoundsOnOff = document.querySelector('#soundsOnOff');
 
 //Sonidos y musica del juego
 const audioStart = new Audio('./sounds/start.wav');
@@ -35,6 +38,7 @@ btnNuevoJuego.addEventListener('click', () => {
     contenedorBtn.classList.add('hidden');
     btnNuevoJuego.classList.remove('absolute', 'z-50', 'bottom-[10%]');
     score.classList.remove('hidden');
+    btnsSonido.classList.remove('hidden');
     barWindow.classList.remove('absolute', 'z-50');
     audioStart.play();
     setTimeout(() => {
@@ -245,3 +249,54 @@ function calcularPuntaje(){
         return puntaje = contadorPares * 30;
     }
 }
+
+btnMusicOnOff.addEventListener('click', () => {
+    const iconOn = btnMusicOnOff.childNodes[1];
+    const iconOff = btnMusicOnOff.childNodes[3];
+
+    iconOn.classList.toggle('hidden');
+    iconOff.classList.toggle('hidden');
+
+    if(iconOn.classList.contains('hidden')){
+        audioMusic.pause();
+    } else{
+        audioMusic.play();
+    }
+});
+
+btnSoundsOnOff.addEventListener('click', () => {
+    const iconOn = btnSoundsOnOff.childNodes[1];
+    const iconOff = btnSoundsOnOff.childNodes[3];
+
+    iconOn.classList.toggle('hidden');
+    iconOff.classList.toggle('hidden');
+
+    if(iconOn.classList.contains('hidden')){
+        audioStart.pause();
+        audioClick.pause();
+        audioOk.pause();
+        audioFail.pause();
+        audioWin.pause();
+
+        audioStart.volume = 0;
+        audioClick.volume = 0;
+        audioOk.volume = 0;
+        audioFail.volume = 0;
+        audioWin.volume = 0;
+    } else{
+        audioStart.play();
+        audioClick.play();
+        audioOk.play();
+        audioFail.play();
+        audioWin.play();
+        //audioMusic.play();
+
+        setTimeout(() => {
+            audioStart.volume = 1;
+            audioClick.volume = 1;
+            audioOk.volume = 1;
+            audioFail.volume = 1;
+            audioWin.volume = 1;
+        }, 1025);
+    }
+});
