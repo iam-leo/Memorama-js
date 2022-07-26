@@ -5,6 +5,7 @@ let contadorPares = 0,
     segundos = 0,
     minutos = 0;
 let timeInterval;
+let totalPares;
 const barWindow = document.querySelector('#bar-window');
 const titulo = document.querySelector('#titulo');
 const contenedorBtn = document.querySelector('.content-btn');
@@ -187,18 +188,22 @@ function generarTablero(tipo, cantidadTarjetas){
         case 'facil':
             //20 Tarjetas
             tablero.classList.add('grid-cols-5');
+            totalPares = 10;
             break;
         case 'intermedio':
             //28 Tarjetas
             tablero.classList.add('grid-cols-7');
+            totalPares = 14;
             break;
         case 'dificil':
             //36 Tarjetas
             tablero.classList.add('grid-cols-9');
+            totalPares = 18;
             break;
         case 'muy dificil':
             //40 Tarjetas
             tablero.classList.add('grid-cols-10');
+            totalPares = 20;
             break;
         default:
             break;
@@ -314,7 +319,7 @@ function deseleccionar(selecciones){
 
 //Funcion verificadora si están los 10 pares acertados
 function juegoFinalizado(){
-    if(contadorPares >= 10){
+    if(contadorPares >= totalPares){
         clearInterval(timeInterval);
         //audioWin.play();
         reactivarAudio('sounds', audioWin);
