@@ -231,7 +231,20 @@ function juegoFinalizado(){
         contenedorBtn.classList.remove('hidden');
         btnNuevoJuego.classList.add('absolute', 'z-50', 'bottom-[10%]');
         barWindow.classList.add('absolute', 'z-50');
+        lanzarConfetti();
     }
+}
+
+//Confetti
+const jsConfetti = new JSConfetti();
+
+function lanzarConfetti(){
+    jsConfetti.addConfetti({
+        confettiColors: [
+            '#ffe100', '#ffbf00', '#00bfff', '#6100ff', '#ff00ff', '#ff0000',
+          ],
+        confettiNumber: 1200,
+    });
 }
 
 function resetearValores(){
