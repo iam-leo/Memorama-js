@@ -27,7 +27,29 @@
         </button>
       </div>
     </div>
+
+    <!-- Titulo -->
     <h1 id="titulo" class="mt-36 mb-8 mx-auto text-6xl font-kaushan-reg">Memorama JS</h1>
+
+    <!-- Botón Nueva partida -->
+    <div class="mt-4 flex justify-center content-btn">
+      <button id="nuevo-juego" class="rounded-lg bg-red-600/60  text-2xl font-handlee-reg py-3 px-4 leading-none text-white flex justify-center items-center uppercase hover:bg-red-600">Nueva partida</button>
+    </div>
+
+    <!-- Modal Seleccionar Dificultad -->
+    <div id="modal-dificultad" class="flex justify-center items-center absolute m-auto top-0 right-0 bottom-0 left-0 w-full h-[100vh-32px] bg-slate-900/75">
+      <div class="w-full h-52 flex flex-col justify-center items-center bg-yellow-400">
+        <h2 class="text-5xl text-black font-kaushan-reg text-center uppercase tracking-widest">Selecciona una dificultad</h2>
+        <div class="flex gap-x-12 mt-12 text-xl font-semibold">
+          <button id="facil" class="rounded-lg bg-red-600  text-2xl font-handlee-reg py-3 px-4 leading-none text-white flex justify-center items-center uppercase hover:bg-red-600/60 shadow-lg shadow-red-500/40">Fácil</button>
+          <button id="intermedio" class="rounded-lg bg-red-600  text-2xl font-handlee-reg py-3 px-4 leading-none text-white flex justify-center items-center uppercase hover:bg-red-600/60 shadow-lg shadow-red-500/40">Intermedio</button>
+          <button id="dificil" class="rounded-lg bg-red-600  text-2xl font-handlee-reg py-3 px-4 leading-none text-white flex justify-center items-center uppercase hover:bg-red-600/60 shadow-lg shadow-red-500/40">Díficil</button>
+          <button id="muy-dificil" class="rounded-lg bg-red-600  text-2xl font-handlee-reg py-3 px-4 leading-none text-white flex justify-center items-center uppercase hover:bg-red-600/60 shadow-lg shadow-red-500/40">Muy Díficil</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- UI Puntuación -->
     <div id="score" class="w-[550px] h-14 mt-10 flex justify-around items-center bg-slate-200/20 rounded-md hidden">
       <div>
         <span id="movimientos" class="text-2xl font-semibold">Movimientos: 0</span>
@@ -39,9 +61,13 @@
         <p id="tiempo" class="text-2xl font-semibold">Tiempo: <span id="minutos">00</span>:<span id="segundos">00</span></p>
       </div>
     </div>
+
+    <!-- UI Tablero del juego -->
     <div id="tablero" class="mt-4 grid grid-cols-5 gap-3 hidden p-10 bg-slate-200/20 rounded-md">
     </div>
-    <div id="modal" class="flex justify-center items-center absolute m-auto top-0 right-0 bottom-0 left-0 w-full h-[100vh-32px] bg-slate-900/75 hidden">
+
+    <!-- Modal Pantalla Ganadora -->
+    <div id="modal-win" class="flex justify-center items-center absolute m-auto top-0 right-0 bottom-0 left-0 w-full h-[100vh-32px] bg-slate-900/75 hidden">
       <div class="w-full h-52 flex flex-col justify-center items-center bg-lime-400">
         <h2 class="text-6xl text-black font-kaushan-reg text-center uppercase tracking-widest animate-bounce">¡Ganaste!</h2>
         <div class="flex gap-x-12 mt-12 text-xl font-semibold">
@@ -51,9 +77,8 @@
         </div>
       </div>
     </div>
-    <div class="mt-4 flex justify-center content-btn">
-      <button id="nuevo-juego" class="rounded-lg bg-red-600/60  text-2xl font-handlee-reg py-3 px-4 leading-none text-white flex justify-center items-center uppercase hover:bg-red-600">Nueva partida</button>
-    </div>
+
+    <!-- UI Botones de sonido -->
     <div id="contenedor-btn-sonido" class="mt-auto flex justify-end w-full hidden">
       <button id="musicOnOff" class="p-3 bg-red-600/60 rounded-full mb-8 mr-4">
         <svg xmlns="http://www.w3.org/2000/svg" width="20pt" height="20pt" fill="#ffffff" version="1.1" viewBox="0 0 752 752">
@@ -96,9 +121,6 @@
 
       </button>
     </div>
-    <!-- <footer class="mt-auto bg-red-600/50 block w-full">
-        <p class="font-handlee-reg text-white text-center p-4">Leo Ss 2022</p>
-    </footer> -->
     <script src="js/app.js"></script>
   </body>
 </html>
