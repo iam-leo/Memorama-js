@@ -7,21 +7,31 @@ let contadorPares = 0,
 let timeInterval;
 const barWindow = document.querySelector('#bar-window');
 const titulo = document.querySelector('#titulo');
+const contenedorBtn = document.querySelector('.content-btn');
+const btnNuevoJuego = document.querySelector('#nuevo-juego');
+const modalDificultad = document.querySelector('#modal-dificultad');
+const btnFacil = document.querySelector('#facil');
+const btnIntermedio = document.querySelector('#intermedio');
+const btnDificil = document.querySelector('#dificil');
+const btnMDificil = document.querySelector('#muy-dificil');
 const score = document.querySelector('#score');
 const movimientos = document.querySelector('#movimientos');
 const pares = document.querySelector('#pares');
 const spanSegundos = document.querySelector('#segundos');
 const spanMinutos = document.querySelector('#minutos')
 const tablero = document.querySelector('#tablero');
-const contenedorBtn = document.querySelector('.content-btn');
-const btnNuevoJuego = document.querySelector('#nuevo-juego');
-const modal = document.querySelector('#modal-win');
+const modalWin = document.querySelector('#modal-win');
 const modalMov = document.querySelector('#modal-movimientos');
 const modalTime = document.querySelector('#modal-tiempo');
 const modalPuntaje = document.querySelector('#modal-puntaje');
 const btnsSonido = document.querySelector('#contenedor-btn-sonido');
 const btnMusicOnOff = document.querySelector('#musicOnOff');
 const btnSoundsOnOff = document.querySelector('#soundsOnOff');
+
+// 
+// btnIntermedio.addEventListener('click', clik);
+// btnDificil.addEventListener('click', clik);
+// btnMDificil.addEventListener('click', clik);
 
 //Sonidos y musica del juego
 const audioStart = new Audio('./sounds/start.wav');
@@ -40,13 +50,66 @@ if(localStorage.length === 0){
 }
 
 btnNuevoJuego.addEventListener('click', () => {
+    reactivarAudio('sounds', audioStart);
+    modalWin.classList.add('hidden');
+    tablero.classList.add('hidden');
+    modalDificultad.classList.remove('hidden');
+    barWindow.classList.add('absolute', 'z-50');
+    // titulo.classList.add('hidden');
+    // contenedorBtn.classList.add('hidden');
+    // btnNuevoJuego.classList.remove('absolute', 'z-50', 'bottom-[10%]');
+    // score.classList.remove('hidden');
+    // btnsSonido.classList.remove('hidden');
+    // 
+    // 
+    // setTimeout(() => {
+    //     //Reseteamos el html para generar un nuevo tablero
+    //     while(tablero.firstChild){
+    //         tablero.removeChild(tablero.firstChild);
+    //     }
+
+    //     //Reseteamos el contador y html
+    //     resetearValores()
+
+    //     //Ocultamos el modal (Pantalla ganadora)
+    //     modal.classList.add('hidden');
+
+    //     //Generamos el tablero con las tarjetas
+    //     tablero.classList.remove('hidden');
+    //     generarTablero();
+    //     setTimeout(() => {
+    //         tiempo();
+    //     }, 3000);
+    // }, 1300);
+});
+
+btnFacil.addEventListener('click', () =>{
+    reactivarAudio('sounds', audioStart);
+    ajustes('facil', 20);
+});
+
+btnIntermedio.addEventListener('click', () =>{
+    reactivarAudio('sounds', audioStart);
+    ajustes('intermedio', 28);
+});
+
+btnDificil.addEventListener('click', () =>{
+    reactivarAudio('sounds', audioStart);
+    ajustes('dificil', 36);
+});
+
+btnMDificil.addEventListener('click', () =>{
+    reactivarAudio('sounds', audioStart);
+    ajustes('muy dificil', 40);
+});
+
+function ajustes(tipo, cantidadTarjetas){
     titulo.classList.add('hidden');
     contenedorBtn.classList.add('hidden');
     btnNuevoJuego.classList.remove('absolute', 'z-50', 'bottom-[10%]');
     score.classList.remove('hidden');
     btnsSonido.classList.remove('hidden');
-    barWindow.classList.remove('absolute', 'z-50');
-    reactivarAudio('sounds', audioStart)
+
     setTimeout(() => {
         //Reseteamos el html para generar un nuevo tablero
         while(tablero.firstChild){
@@ -54,19 +117,20 @@ btnNuevoJuego.addEventListener('click', () => {
         }
 
         //Reseteamos el contador y html
-        resetearValores()
+        resetearValores();
 
-        //Ocultamos el modal (Pantalla ganadora)
-        modal.classList.add('hidden');
+        //Ocultamos modal dificultad y pantalla ganadora
+        modalDificultad.classList.add('hidden');
+        modalWin.classList.add('hidden');
 
         //Generamos el tablero con las tarjetas
         tablero.classList.remove('hidden');
-        generarTablero();
+        generarTablero(tipo, cantidadTarjetas);
         setTimeout(() => {
             tiempo();
         }, 3000);
     }, 1300);
-});
+}
 
 function tiempo(){
     timeInterval = setInterval(() => {
@@ -103,17 +167,47 @@ function cargarFiguras(){
         'img/007.png',
         'img/008.png',
         'img/009.png',
-        'img/010.png'
+        'img/010.png',
+        'img/011.png',
+        'img/012.png',
+        'img/013.png',
+        'img/014.png',
+        'img/015.png',
+        'img/016.png',
+        'img/017.png',
+        'img/018.png',
+        'img/019.png',
+        'img/020.png'
     ]
 }
 
-function generarTablero(){
-    reactivarAudio('music', audioMusic)
+function generarTablero(tipo, cantidadTarjetas){
+    reactivarAudio('music', audioMusic);
+    switch (tipo) {
+        case 'facil':
+            //20 Tarjetas
+            tablero.classList.add('grid-cols-5');
+            break;
+        case 'intermedio':
+            //28 Tarjetas
+            tablero.classList.add('grid-cols-7');
+            break;
+        case 'dificil':
+            //36 Tarjetas
+            tablero.classList.add('grid-cols-9');
+            break;
+        case 'muy dificil':
+            //40 Tarjetas
+            tablero.classList.add('grid-cols-10');
+            break;
+        default:
+            break;
+    }
     cargarFiguras();
     let tarjetas = [];
 
     //Generamos las tarjetas con las figuras
-    for(let i=0; i<20; i++){
+    for(let i=0; i<cantidadTarjetas; i++){
         tarjetas.push(generarTarjeta(i));
         //Logica para generar dos tarjetas seguidas con la misma figura
         if(i%2 == 1){
@@ -227,7 +321,7 @@ function juegoFinalizado(){
         modalMov.textContent = `Movimientos: ${cantMovimientos}`;
         modalTime.textContent = `Tiempo: ${spanMinutos.textContent}:${spanSegundos.textContent}`;
         modalPuntaje.textContent = `Puntaje: ${calcularPuntaje()}`;
-        modal.classList.remove('hidden');
+        modalWin.classList.remove('hidden');
         contenedorBtn.classList.remove('hidden');
         btnNuevoJuego.classList.add('absolute', 'z-50', 'bottom-[10%]');
         barWindow.classList.add('absolute', 'z-50');
